@@ -16,13 +16,11 @@
       
       <tag>Computer Aided Graphics Design</tag>
       
+      <tag>Polar Form and Blossom</tag>
+      
       <tag>Bézier Curve</tag>
       
       <tag>B Spline</tag>
-      
-      <tag>Bernstein Polynomial</tag>
-      
-      <tag>Polar Form and Blossom</tag>
       
     </tags>
     
@@ -43,13 +41,13 @@
       
       <tag>Computer Aided Graphics Design</tag>
       
-      <tag>Bézier Spline</tag>
-      
       <tag>Bézier Curve</tag>
       
       <tag>B Spline</tag>
       
       <tag>Bernstein Polynomial</tag>
+      
+      <tag>Bézier Spline</tag>
       
     </tags>
     
@@ -98,6 +96,27 @@
       <tag>Interpolation</tag>
       
       <tag>Fitting</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>有理曲线</title>
+    <link href="/1970/01/01/05RationalCurve/"/>
+    <url>/1970/01/01/05RationalCurve/</url>
+    
+    <content type="html"><![CDATA[<h1>有理曲线</h1>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Computer Aided Graphics Design</tag>
+      
+      <tag>Rational Curve</tag>
       
     </tags>
     
