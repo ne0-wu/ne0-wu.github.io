@@ -4,7 +4,28 @@
   
   
   <entry>
-    <title>极形式</title>
+    <title>CAGD 学习笔记 | 有理曲线</title>
+    <link href="/2023/02/16/05RationalCurve/"/>
+    <url>/2023/02/16/05RationalCurve/</url>
+    
+    <content type="html"><![CDATA[<h1>有理曲线</h1><p>TODO</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Computer Aided Graphics Design</tag>
+      
+      <tag>Rational Curve</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>CAGD 学习笔记 | 极形式</title>
     <link href="/2023/02/15/04PolarForm/"/>
     <url>/2023/02/15/04PolarForm/</url>
     
@@ -18,9 +39,9 @@
       
       <tag>Computer Aided Graphics Design</tag>
       
-      <tag>B Spline</tag>
-      
       <tag>Polar Form and Blossom</tag>
+      
+      <tag>B Spline</tag>
       
     </tags>
     
@@ -29,7 +50,7 @@
   
   
   <entry>
-    <title>样条曲线</title>
+    <title>CAGD 学习笔记 | 样条曲线</title>
     <link href="/2023/01/30/03SplineCurve/"/>
     <url>/2023/01/30/03SplineCurve/</url>
     
@@ -45,9 +66,9 @@
       
       <tag>Computer Aided Graphics Design</tag>
       
-      <tag>Bézier Spline</tag>
-      
       <tag>B Spline</tag>
+      
+      <tag>Bézier Spline</tag>
       
     </tags>
     
@@ -56,7 +77,7 @@
   
   
   <entry>
-    <title>Bézier 曲线</title>
+    <title>CAGD 学习笔记 | Bézier 曲线</title>
     <link href="/2023/01/21/02BezierCurve/"/>
     <url>/2023/01/21/02BezierCurve/</url>
     
@@ -79,7 +100,7 @@
   
   
   <entry>
-    <title>插值和拟合</title>
+    <title>CAGD 学习笔记 | 插值和拟合</title>
     <link href="/2023/01/20/01InterpolationAndFitting/"/>
     <url>/2023/01/20/01InterpolationAndFitting/</url>
     
@@ -96,27 +117,6 @@
       <tag>Bernstein Polynomial</tag>
       
       <tag>Bézier Curve</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>有理曲线</title>
-    <link href="/1970/01/01/05RationalCurve/"/>
-    <url>/1970/01/01/05RationalCurve/</url>
-    
-    <content type="html"><![CDATA[<h1>有理曲线</h1>]]></content>
-    
-    
-    
-    <tags>
-      
-      <tag>Computer Aided Graphics Design</tag>
-      
-      <tag>Rational Curve</tag>
       
     </tags>
     
