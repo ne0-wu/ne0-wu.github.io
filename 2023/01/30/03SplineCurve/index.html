@@ -16,12 +16,12 @@
   <meta name="author" content="Ne0 Wu">
   <meta name="keywords" content="">
   
-    <meta name="description" content="样条曲线 在上一篇文章中, 我们介绍了 Bézier 曲线, 它是一条由若干控制点给出的光滑的多项式曲线, 而这些控制点对应的基函数是 Bernstein 基函数. 不难注意到, Bernstein 基函数 Bkn(t)B^n_k(t)Bkn​(t) 在 kn\frac{k}{n}nk​ 处达到极大值, 在远离 kn\frac{k}{n}nk​ 时不断减小直到 000. 因此每一个控制点在它附近对">
+    <meta name="description" content="样条曲线指的是平滑的分段多项式曲线, 而这个名字来自于二战期间英国制造飞机时的技术, 使用若干段薄木条穿过固定的点来形成飞机上的曲线. 因为样条曲线是分段的, 所以可以使每一个控制点的影响范围在它的附近. 此外, 样条曲线的另一个优势在于可以控制曲线的阶数, 避免高次多项式的出现.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="样条曲线">
-<meta property="og:url" content="https://ne0-wu.github.io/2023/01/30/03SplineCurve/">
+<meta property="og:title" content="样条曲线 (TODO)">
+<meta property="og:url" content="https://ne0.life/2023/01/30/03SplineCurve/">
 <meta property="og:site_name" content="Ne0&#39;s Blog">
-<meta property="og:description" content="样条曲线 在上一篇文章中, 我们介绍了 Bézier 曲线, 它是一条由若干控制点给出的光滑的多项式曲线, 而这些控制点对应的基函数是 Bernstein 基函数. 不难注意到, Bernstein 基函数 Bkn(t)B^n_k(t)Bkn​(t) 在 kn\frac{k}{n}nk​ 处达到极大值, 在远离 kn\frac{k}{n}nk​ 时不断减小直到 000. 因此每一个控制点在它附近对">
+<meta property="og:description" content="样条曲线指的是平滑的分段多项式曲线, 而这个名字来自于二战期间英国制造飞机时的技术, 使用若干段薄木条穿过固定的点来形成飞机上的曲线. 因为样条曲线是分段的, 所以可以使每一个控制点的影响范围在它的附近. 此外, 样条曲线的另一个优势在于可以控制曲线的阶数, 避免高次多项式的出现.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2023-01-29-16-13-42.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/202301271646396.png">
@@ -37,11 +37,11 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2023-01-30-13-32-24.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2023-01-30-15-34-14.png">
 <meta property="article:published_time" content="2023-01-29T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-02-16T03:41:45.573Z">
+<meta property="article:modified_time" content="2023-02-16T04:33:37.438Z">
 <meta property="article:author" content="Ne0 Wu">
-<meta property="article:tag" content="Bernstein Polynomial">
-<meta property="article:tag" content="Bézier Curve">
 <meta property="article:tag" content="Computer Aided Graphics Design">
+<meta property="article:tag" content="Bézier Curve">
+<meta property="article:tag" content="Bernstein Polynomial">
 <meta property="article:tag" content="Bézier Spline">
 <meta property="article:tag" content="B Spline">
 <meta name="twitter:card" content="summary_large_image">
@@ -51,7 +51,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>样条曲线 - Ne0&#39;s Blog</title>
+  <title>样条曲线 (TODO) - Ne0&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -91,7 +91,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"ne0-wu.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":6},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"ne0.life","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":6},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -137,7 +137,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -149,7 +149,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -161,7 +161,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -173,7 +173,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -185,7 +185,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -193,15 +193,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
           
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -218,7 +219,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="样条曲线"></span>
+            <span id="subtitle" data-typed-text="样条曲线 (TODO)"></span>
           
         </div>
 
@@ -290,7 +291,7 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">样条曲线</h1>
+            <h1 style="display: none">样条曲线 (TODO)</h1>
             
             
               <div class="markdown-body">
@@ -518,15 +519,36 @@ c124.7 8 235 61.7 331 161 31.3 33.3 59.7 72.7 85 118l7 13v35z'/></svg></span></s
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/CAGD-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">CAGD 学习笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Bernstein-Polynomial/">#Bernstein Polynomial</a>
+        <a href="/tags/Computer-Aided-Graphics-Design/">#Computer Aided Graphics Design</a>
       
         <a href="/tags/Bezier-Curve/">#Bézier Curve</a>
       
-        <a href="/tags/Computer-Aided-Graphics-Design/">#Computer Aided Graphics Design</a>
+        <a href="/tags/Bernstein-Polynomial/">#Bernstein Polynomial</a>
       
         <a href="/tags/Bezier-Spline/">#Bézier Spline</a>
       
@@ -542,8 +564,8 @@ c124.7 8 235 61.7 331 161 31.3 33.3 59.7 72.7 85 118l7 13v35z'/></svg></span></s
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>样条曲线</div>
-      <div>https://ne0-wu.github.io/2023/01/30/03SplineCurve/</div>
+      <div>样条曲线 (TODO)</div>
+      <div>https://ne0.life/2023/01/30/03SplineCurve/</div>
     </div>
     <div class="license-meta">
       
@@ -618,7 +640,10 @@ c124.7 8 235 61.7 331 161 31.3 33.3 59.7 72.7 85 118l7 13v35z'/></svg></span></s
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 

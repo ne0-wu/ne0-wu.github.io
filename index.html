@@ -18,7 +18,7 @@
   
     <meta property="og:type" content="website">
 <meta property="og:title" content="Ne0&#39;s Blog">
-<meta property="og:url" content="https://ne0-wu.github.io/">
+<meta property="og:url" content="https://ne0.life/">
 <meta property="og:site_name" content="Ne0&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Ne0 Wu">
@@ -60,7 +60,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"ne0-wu.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":6},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"ne0.life","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":6},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -106,7 +106,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -118,7 +118,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -130,7 +130,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -142,7 +142,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -154,7 +154,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -162,15 +162,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
           
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -226,14 +227,14 @@
       <h1 class="index-header">
         
         <a href="/2023/02/16/05RationalCurve/" target="_self">
-          有理曲线
+          有理曲线 (TODO)
         </a>
       </h1>
 
       
       <a class="index-excerpt index-excerpt__noimg" href="/2023/02/16/05RationalCurve/" target="_self">
         <div>
-          有理曲线 TODO
+          有理曲线
         </div>
       </a>
 
@@ -296,7 +297,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2023/02/15/04PolarForm/" target="_self">
         <div>
-          极形式 极形式是计算机图形学中用于处理样条曲线和曲面的数学工具, 它是一种将多项式表示为多重仿射函数的方法，它具有对称性和多重仿射性的性质. 例如对于多项式 P(t)=at3+bt2+ct+dP(t)=a t^3+b t^2+c t+dP(t)=at3+bt2+ct+d, 我们可以将它改写为 P(t)=a⋅t⋅t⋅t+b⋅t⋅t+c⋅t+dP(t)=a \cdot t \cdot t \cdot
+          极形式是计算机图形学中用于处理样条曲线和曲面的数学工具, 它是一种将多项式表示为多重仿射函数的方法，它具有对称性和多重仿射性的性质. 利用极形式我们可以更方便地研究 Bézier 曲线, 并且更自然地描述 de Casteljau 算法和 de Boor 算法.
         </div>
       </a>
 
@@ -335,9 +336,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Bezier-Curve/">#Bézier Curve</a>
-            
               <a href="/tags/Computer-Aided-Graphics-Design/">#Computer Aided Graphics Design</a>
+            
+              <a href="/tags/Bezier-Curve/">#Bézier Curve</a>
             
               <a href="/tags/B-Spline/">#B Spline</a>
             
@@ -363,7 +364,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2023/02/10/gamenotes2022/" target="_self">
         <div>
-          2022 年通关游戏的感想总结 记录了在 2022 年通关的游戏，基本上是按照游玩的先后顺序排序，一大堆没通关的就先不写了。 宝可梦传说: 阿尔宙斯 宝可梦主题的开放世界游戏其实早该有了，但是 GF 直到 2022 年才掏出来第一个，真是令人感叹。 传阿的前期是非常有趣的，随着主线的推进解锁新的交通工具和新的地图，然后在新地图上捕捉更多的宝可梦。可惜的是这一作有的宝可梦数量太少了，而新玩法也没啥深
+          记录了在 2022 年通关的游戏，基本上是按照游玩的先后顺序排序，一大堆没通关的就先不写了。
         </div>
       </a>
 
@@ -410,14 +411,14 @@
       <h1 class="index-header">
         
         <a href="/2023/01/30/03SplineCurve/" target="_self">
-          样条曲线
+          样条曲线 (TODO)
         </a>
       </h1>
 
       
       <a class="index-excerpt index-excerpt__noimg" href="/2023/01/30/03SplineCurve/" target="_self">
         <div>
-          样条曲线 在上一篇文章中, 我们介绍了 Bézier 曲线, 它是一条由若干控制点给出的光滑的多项式曲线, 而这些控制点对应的基函数是 Bernstein 基函数. 不难注意到, Bernstein 基函数 Bkn(t)B^n_k(t)Bkn​(t) 在 kn\frac{k}{n}nk​ 处达到极大值, 在远离 kn\frac{k}{n}nk​ 时不断减小直到 000. 因此每一个控制点在它附近对
+          样条曲线指的是平滑的分段多项式曲线, 而这个名字来自于二战期间英国制造飞机时的技术, 使用若干段薄木条穿过固定的点来形成飞机上的曲线. 因为样条曲线是分段的, 所以可以使每一个控制点的影响范围在它的附近. 此外, 样条曲线的另一个优势在于可以控制曲线的阶数, 避免高次多项式的出现.
         </div>
       </a>
 
@@ -431,15 +432,36 @@
           </div>
         
         
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/CAGD-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">CAGD 学习笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Bernstein-Polynomial/">#Bernstein Polynomial</a>
+              <a href="/tags/Computer-Aided-Graphics-Design/">#Computer Aided Graphics Design</a>
             
               <a href="/tags/Bezier-Curve/">#Bézier Curve</a>
             
-              <a href="/tags/Computer-Aided-Graphics-Design/">#Computer Aided Graphics Design</a>
+              <a href="/tags/Bernstein-Polynomial/">#Bernstein Polynomial</a>
             
               <a href="/tags/Bezier-Spline/">#Bézier Spline</a>
             
@@ -465,7 +487,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2023/01/21/02BezierCurve/" target="_self">
         <div>
-          Bézier 曲线 Bézier 曲线指的是一段由若干控制点给出的多项式曲线, 它是计算机图形学中的一种重要的参数曲线. 首先, 我们给出 Bézier 曲线的定义. Bézier 曲线的定义 对于空间中的 n+1n+1n+1 个控制点 {p0,p1,…,pn}\{p_0, p_1, \dots, p_n\}{p0​,p1​,…,pn​}, 我们有一段 Bézier 参数曲线 p(t)=∑k=0n
+          Bézier 曲线指的是一段由若干控制点给出的多项式曲线, 它是计算机图形学中的一种重要的参数曲线. 本文将介绍它的定义、意义、性质和应用.
         </div>
       </a>
 
@@ -504,11 +526,11 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Bernstein-Polynomial/">#Bernstein Polynomial</a>
+              <a href="/tags/Computer-Aided-Graphics-Design/">#Computer Aided Graphics Design</a>
             
               <a href="/tags/Bezier-Curve/">#Bézier Curve</a>
             
-              <a href="/tags/Computer-Aided-Graphics-Design/">#Computer Aided Graphics Design</a>
+              <a href="/tags/Bernstein-Polynomial/">#Bernstein Polynomial</a>
             
           </div>
         
@@ -530,7 +552,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2023/01/20/01InterpolationAndFitting/" target="_self">
         <div>
-          插值和拟合 插值 问题背景 插值问题指的是, 空间中存在一组数据点, 我们希望求一条光滑的曲线, 使得它恰好经过这些点. 问题设定 对于一组插值点  (xi,yi),1≤i≤n,xi∈R,yi∈Rd(x_i, \mathbf{y}_i), 1 \le i \le n, x_i \in \mathbb{R}, \mathbf{y}_i \in \mathbb{R}^d(xi​,yi​),1≤i≤n,
+          插值和拟合都是根据一组数据构造一个近似函数, 但二者近似的要求. 插值是指函数在多个离散点上的函数值或导数信息, 要求近似函数经过所已知的所有数据点. 拟合是指函数在多个离散点上的函数值或导数信息, 不要求近似函数经过所有数据点, 而是要求它能较好地反映数据变化规律, 通常使用最小二乘法或其他优化方法来求解.
         </div>
       </a>
 
@@ -569,13 +591,13 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Interpolation/">#Interpolation</a>
-            
-              <a href="/tags/Fitting/">#Fitting</a>
+              <a href="/tags/Bezier-Curve/">#Bézier Curve</a>
             
               <a href="/tags/Bernstein-Polynomial/">#Bernstein Polynomial</a>
             
-              <a href="/tags/Bezier-Curve/">#Bézier Curve</a>
+              <a href="/tags/Interpolation/">#Interpolation</a>
+            
+              <a href="/tags/Fitting/">#Fitting</a>
             
           </div>
         
