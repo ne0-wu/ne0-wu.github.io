@@ -27,16 +27,14 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/202301210144441.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/20230121021343.png">
 <meta property="article:published_time" content="2023-01-20T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-02-16T04:35:17.413Z">
+<meta property="article:modified_time" content="2023-02-16T08:31:48.301Z">
 <meta property="article:author" content="Ne0 Wu">
-<meta property="article:tag" content="Bernstein Polynomial">
-<meta property="article:tag" content="Bézier Curve">
 <meta property="article:tag" content="Computer Aided Graphics Design">
+<meta property="article:tag" content="Bézier Curve">
+<meta property="article:tag" content="Bernstein Polynomial">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/202301210124134.png">
   
-  
-    <meta name="referrer" content="no-referrer-when-downgrade">
   
   
   <title>Bézier 曲线 - Ne0&#39;s Blog</title>
@@ -454,7 +452,7 @@ t \cdot B^{n,k}(t) &amp; = \frac{k+1}{n+1}B^{n+1,k+1}(t)
 <p><strong>变差缩减性 (Variation Diminishing Property)</strong> 指的是, 对于空间中的任意平面, 它与 Bézier 曲线的交点个数不会多于它与控制多边形的交点个数.</p>
 <p>证明可以通过 Bézier 曲线的升阶得到. 如图 2, 升阶后的控制多边形中的任意一条不连接起点或终点的线段, 能与升阶前的控制多边形中的两条线段组成一个三角形. 考虑这一三角形, 若该平面与升阶得到的线段相交, 则升阶前的两段线段中必有一个与该平面相交. 因此升阶不会使得控制多边形与该平面的交点个数减少. 又因为不断升阶得到的控制多边形将收敛于这条 Bézier 曲线, 故曲线与这个平面的交点不会多于它与控制多边形的交点个数.</p>
 <h3 id="仿射无关性">仿射无关性</h3>
-<p>仿射无关性 (Affine Invariance Property) 指的是, 对一条 Bézier 曲线作仿射变换, 等价于对它的控制点作仿射变换并在从这些点构造一条新的 Bézier 曲线.</p>
+<p><strong>仿射无关性 (Affine Invariance Property)</strong> 指的是, 对一条 Bézier 曲线作仿射变换, 等价于对它的控制点作仿射变换并在从这些点构造一条新的 Bézier 曲线.</p>
 <p>这可以直接由 Bézier 曲线的定义容易地证明.</p>
 <h3 id="凸包性">凸包性</h3>
 <p><strong>凸包性 (Convex Hull Property)</strong> 指的是,  Bézier 曲线上的点总位于控制点的凸包内.</p>
@@ -532,11 +530,11 @@ c-10,0,-16.667,5,-20,15z M410 15 H367 v585 v0 v585 h43z'/></svg></span></span></
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Bernstein-Polynomial/">#Bernstein Polynomial</a>
+        <a href="/tags/Computer-Aided-Graphics-Design/">#Computer Aided Graphics Design</a>
       
         <a href="/tags/Bezier-Curve/">#Bézier Curve</a>
       
-        <a href="/tags/Computer-Aided-Graphics-Design/">#Computer Aided Graphics Design</a>
+        <a href="/tags/Bernstein-Polynomial/">#Bernstein Polynomial</a>
       
     </div>
   
@@ -716,30 +714,6 @@ c-10,0,-16.667,5,-20,15z M410 15 H367 v585 v0 v585 h43z'/></svg></span></span></
     </div>
   
   
-    <div class="statistics">
-  
-  
-
-  
-    
-      <span id="busuanzi_container_site_pv" style="display: none">
-        总访问量 
-        <span id="busuanzi_value_site_pv"></span>
-         次
-      </span>
-    
-    
-      <span id="busuanzi_container_site_uv" style="display: none">
-        总访客数 
-        <span id="busuanzi_value_site_uv"></span>
-         人
-      </span>
-    
-    
-  
-</div>
-
-  
   
   
 </div>
@@ -885,8 +859,6 @@ c-10,0,-16.667,5,-20,15z M410 15 H367 v585 v0 v585 h43z'/></svg></span></span></
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

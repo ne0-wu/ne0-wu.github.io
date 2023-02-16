@@ -29,17 +29,15 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2023-02-15-21-32-22.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2023-02-15-21-36-31.png">
 <meta property="article:published_time" content="2023-02-14T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-02-16T04:43:37.580Z">
+<meta property="article:modified_time" content="2023-02-16T08:47:13.492Z">
 <meta property="article:author" content="Ne0 Wu">
-<meta property="article:tag" content="Bézier Curve">
 <meta property="article:tag" content="Computer Aided Graphics Design">
+<meta property="article:tag" content="Bézier Curve">
 <meta property="article:tag" content="B Spline">
 <meta property="article:tag" content="Polar Form and Blossom">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2023-02-15-18-01-07.png">
   
-  
-    <meta name="referrer" content="no-referrer-when-downgrade">
   
   
   <title>极形式 - Ne0&#39;s Blog</title>
@@ -443,7 +441,7 @@ k</p>
 <p>假设有一条多项式曲线 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><msubsup><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></msubsup><msub><mi>c</mi><mi>k</mi></msub><msup><mi>t</mi><mi>k</mi></msup></mrow><annotation encoding="application/x-tex">F(t) = \sum_{k=0}^n c_k t^k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1488em;vertical-align:-0.2997em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8043em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span></span></span></span>, 则可以通过改写为极形式, 得到它作为 Bézier 曲线的控制点.</p>
 <h2 id="极形式-B-样条和-de-Boor-算法">极形式, B 样条和 de Boor 算法</h2>
 <p>在上文中, 我们已经实现了将 de Casteljau 算法改写为极形式的语言, 那么对于与它非常相像的 de Boor 算法, 是否也可以做类似的操作? 答案是可以, 但只能做到形式上类似.</p>
-<p>以下的讨论将沿用上一篇文章中推导 de Boor 算法所采用的记号.</p>
+<p>以下的讨论将沿用上一篇笔记中推导 de Boor 算法所采用的记号.</p>
 <p>首先, 假设 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>∈</mo><mo stretchy="false">[</mo><msub><mi>t</mi><mi>l</mi></msub><mo separator="true">,</mo><msub><mi>t</mi><mrow><mi>l</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">t \in [t_{l}, t_{l+1})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6542em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>, 则有</p>
 <p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><msubsup><mi>p</mi><mi>l</mi><mrow><mo stretchy="false">(</mo><mi>d</mi><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><msubsup><mi>α</mi><mi>l</mi><mrow><mo stretchy="false">(</mo><mi>d</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><msubsup><mi>p</mi><mrow><mi>l</mi><mo>−</mo><mn>1</mn></mrow><mrow><mo stretchy="false">(</mo><mi>d</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>+</mo><msubsup><mi>α</mi><mi>l</mi><mrow><mo stretchy="false">(</mo><mi>d</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><msubsup><mi>p</mi><mi>l</mi><mrow><mo stretchy="false">(</mo><mi>d</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mfrac><mrow><msub><mi>t</mi><mrow><mi>l</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><mi>t</mi></mrow><mrow><msub><mi>t</mi><mrow><mi>l</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><msub><mi>t</mi><mi>l</mi></msub></mrow></mfrac><msubsup><mi>p</mi><mrow><mi>l</mi><mo>−</mo><mn>1</mn></mrow><mrow><mo stretchy="false">(</mo><mi>d</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></msubsup><mo>+</mo><mfrac><mrow><mi>t</mi><mo>−</mo><msub><mi>t</mi><mi>l</mi></msub></mrow><mrow><msub><mi>t</mi><mrow><mi>l</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><msub><mi>t</mi><mi>l</mi></msub></mrow></mfrac><msubsup><mi>p</mi><mi>l</mi><mrow><mo stretchy="false">(</mo><mi>d</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}
 	p(t) &amp; = p_l^{(d)}(t)	\\
@@ -504,9 +502,9 @@ c124.7 8 235 61.7 331 161 31.3 33.3 59.7 72.7 85 118l7 13v35z'/></svg></span></s
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Bezier-Curve/">#Bézier Curve</a>
-      
         <a href="/tags/Computer-Aided-Graphics-Design/">#Computer Aided Graphics Design</a>
+      
+        <a href="/tags/Bezier-Curve/">#Bézier Curve</a>
       
         <a href="/tags/B-Spline/">#B Spline</a>
       
@@ -690,30 +688,6 @@ c124.7 8 235 61.7 331 161 31.3 33.3 59.7 72.7 85 118l7 13v35z'/></svg></span></s
     </div>
   
   
-    <div class="statistics">
-  
-  
-
-  
-    
-      <span id="busuanzi_container_site_pv" style="display: none">
-        总访问量 
-        <span id="busuanzi_value_site_pv"></span>
-         次
-      </span>
-    
-    
-      <span id="busuanzi_container_site_uv" style="display: none">
-        总访客数 
-        <span id="busuanzi_value_site_uv"></span>
-         人
-      </span>
-    
-    
-  
-</div>
-
-  
   
   
 </div>
@@ -859,8 +833,6 @@ c124.7 8 235 61.7 331 161 31.3 33.3 59.7 72.7 85 118l7 13v35z'/></svg></span></s
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

@@ -37,18 +37,16 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2023-01-30-13-32-24.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2023-01-30-15-34-14.png">
 <meta property="article:published_time" content="2023-01-29T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-02-16T04:33:37.438Z">
+<meta property="article:modified_time" content="2023-02-16T08:47:05.430Z">
 <meta property="article:author" content="Ne0 Wu">
-<meta property="article:tag" content="Bernstein Polynomial">
-<meta property="article:tag" content="Bézier Curve">
 <meta property="article:tag" content="Computer Aided Graphics Design">
+<meta property="article:tag" content="Bézier Curve">
 <meta property="article:tag" content="Bézier Spline">
 <meta property="article:tag" content="B Spline">
+<meta property="article:tag" content="Bernstein Polynomial">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2023-01-29-16-13-42.png">
   
-  
-    <meta name="referrer" content="no-referrer-when-downgrade">
   
   
   <title>样条曲线 (TODO) - Ne0&#39;s Blog</title>
@@ -297,7 +295,7 @@
               <div class="markdown-body">
                 
                 <h1>样条曲线</h1>
-<p>在上一篇文章中, 我们介绍了 Bézier 曲线, 它是一条由若干控制点给出的光滑的多项式曲线, 而这些控制点对应的基函数是 Bernstein 基函数. 不难注意到, Bernstein 基函数 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>B</mi><mi>k</mi><mi>n</mi></msubsup><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">B^n_k(t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0331em;vertical-align:-0.2831em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-2.4169em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2831em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span> 在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mi>k</mi><mi>n</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{k}{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2251em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> 处达到极大值, 在远离 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mi>k</mi><mi>n</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{k}{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2251em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> 时不断减小直到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>. 因此每一个控制点在它附近对 Bézier 曲线的形状影响最大, 而在远处影响较小但始终非 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>. 用户移动某一控制点时, 总会对曲线整体造成影响. 此外, 当控制点增多时, 会产生更高阶的多项式, 影响计算效率.</p>
+<p>在上一篇笔记中, 我们介绍了 Bézier 曲线, 它是一条由若干控制点给出的光滑的多项式曲线, 而这些控制点对应的基函数是 Bernstein 基函数. 不难注意到, Bernstein 基函数 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>B</mi><mi>k</mi><mi>n</mi></msubsup><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">B^n_k(t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0331em;vertical-align:-0.2831em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-2.4169em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2831em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span> 在 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mi>k</mi><mi>n</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{k}{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2251em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> 处达到极大值, 在远离 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mi>k</mi><mi>n</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{k}{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2251em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> 时不断减小直到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>. 因此每一个控制点在它附近对 Bézier 曲线的形状影响最大, 而在远处影响较小但始终非 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>. 用户移动某一控制点时, 总会对曲线整体造成影响. 此外, 当控制点增多时, 会产生更高阶的多项式, 影响计算效率.</p>
 <p><img src="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2023-01-29-16-13-42.png" srcset="/img/loading.gif" lazyload alt="五阶 Bernstein 基函数的图像"></p>
 <p>在实践中, 我们有时会希望控制点只在它的附近对曲线的形状有影响, 并且避免高阶多项式, 此时 Bézier 曲线将无法达到要求. 为此我们需要使用另一种曲线: <strong>样条曲线 (Spline curve)</strong>.</p>
 <p>样条曲线指的是平滑的分段多项式曲线, 而这个名字来自于二战期间英国制造飞机时的技术, 使用若干段薄木条穿过固定的点来形成飞机上的曲线. 因为样条曲线是分段的, 所以可以使每一个控制点的影响范围在它的附近. 此外, 样条曲线的另一个优势在于可以控制曲线的阶数, 避免高次多项式的出现.</p>
@@ -544,15 +542,15 @@ c124.7 8 235 61.7 331 161 31.3 33.3 59.7 72.7 85 118l7 13v35z'/></svg></span></s
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Bernstein-Polynomial/">#Bernstein Polynomial</a>
+        <a href="/tags/Computer-Aided-Graphics-Design/">#Computer Aided Graphics Design</a>
       
         <a href="/tags/Bezier-Curve/">#Bézier Curve</a>
-      
-        <a href="/tags/Computer-Aided-Graphics-Design/">#Computer Aided Graphics Design</a>
       
         <a href="/tags/Bezier-Spline/">#Bézier Spline</a>
       
         <a href="/tags/B-Spline/">#B Spline</a>
+      
+        <a href="/tags/Bernstein-Polynomial/">#Bernstein Polynomial</a>
       
     </div>
   
@@ -732,30 +730,6 @@ c124.7 8 235 61.7 331 161 31.3 33.3 59.7 72.7 85 118l7 13v35z'/></svg></span></s
     </div>
   
   
-    <div class="statistics">
-  
-  
-
-  
-    
-      <span id="busuanzi_container_site_pv" style="display: none">
-        总访问量 
-        <span id="busuanzi_value_site_pv"></span>
-         次
-      </span>
-    
-    
-      <span id="busuanzi_container_site_uv" style="display: none">
-        总访客数 
-        <span id="busuanzi_value_site_uv"></span>
-         人
-      </span>
-    
-    
-  
-</div>
-
-  
   
   
 </div>
@@ -901,8 +875,6 @@ c124.7 8 235 61.7 331 161 31.3 33.3 59.7 72.7 85 118l7 13v35z'/></svg></span></s
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
