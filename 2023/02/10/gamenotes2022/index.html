@@ -71,7 +71,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"ne0.life","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":6},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"ne0.life","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":6},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -199,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="2022 年通关游戏的感想总结"></span>
+            <span id="subtitle">2022 年通关游戏的感想总结</span>
           
         </div>
 
@@ -336,8 +336,8 @@
 抛开玩法不谈，这个游戏还是相当不错的。故事环环相扣又引人入胜，有大量的对照和伏笔，而剧情节奏又很好，回收伏笔的时机都很恰当。另外文笔精炼，极少有废话，角色的形象往往只用寥寥几句就能立起来了。</p>
 <h2 id="游戏和动画个人喜好表">游戏和动画个人喜好表</h2>
 <p>两张没什么价值的表格，填着玩玩。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2023-02-16-11-51-05.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2023-02-16-11-51-14.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2023-02-16-11-51-05.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2023-02-16-11-51-14.png" alt=""></p>
 
                 
               </div>
@@ -565,27 +565,8 @@
 <script  src="/js/plugins.js" ></script>
 
 
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
 
 
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
 
 
 
