@@ -18,7 +18,7 @@
   
     <meta name="description" content="样条曲线指的是平滑的分段多项式曲线, 而这个名字来自于二战期间英国制造飞机时的技术, 使用若干段薄木条穿过固定的点来形成飞机上的曲线. 因为样条曲线是分段的, 所以可以使每一个控制点的影响范围在它的附近. 此外, 样条曲线的另一个优势在于可以控制曲线的阶数, 避免高次多项式的出现.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CAGD 学习笔记 | 03 样条曲线 (TODO)">
+<meta property="og:title" content="CAGD 学习笔记 | 03 样条曲线">
 <meta property="og:url" content="https://ne0.life/2023/01/30/03SplineCurve/">
 <meta property="og:site_name" content="Ne0&#39;s Blog">
 <meta property="og:description" content="样条曲线指的是平滑的分段多项式曲线, 而这个名字来自于二战期间英国制造飞机时的技术, 使用若干段薄木条穿过固定的点来形成飞机上的曲线. 因为样条曲线是分段的, 所以可以使每一个控制点的影响范围在它的附近. 此外, 样条曲线的另一个优势在于可以控制曲线的阶数, 避免高次多项式的出现.">
@@ -37,13 +37,13 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2023-01-30-13-32-24.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2023-01-30-15-34-14.png">
 <meta property="article:published_time" content="2023-01-29T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-02-19T02:35:42.149Z">
+<meta property="article:modified_time" content="2023-02-19T06:05:26.146Z">
 <meta property="article:author" content="Ne0 Wu">
-<meta property="article:tag" content="Computer Aided Graphics Design">
+<meta property="article:tag" content="Bernstein Polynomial">
 <meta property="article:tag" content="Bézier Curve">
+<meta property="article:tag" content="Computer Aided Graphics Design">
 <meta property="article:tag" content="Bézier Spline">
 <meta property="article:tag" content="B Spline">
-<meta property="article:tag" content="Bernstein Polynomial">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2023-01-29-16-13-42.png">
   
@@ -51,7 +51,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>CAGD 学习笔记 | 03 样条曲线 (TODO) - Ne0&#39;s Blog</title>
+  <title>CAGD 学习笔记 | 03 样条曲线 - Ne0&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -219,7 +219,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">CAGD 学习笔记 | 03 样条曲线 (TODO)</span>
+            <span id="subtitle">CAGD 学习笔记 | 03 样条曲线</span>
           
         </div>
 
@@ -352,10 +352,10 @@
     
       
       
-        <a href="/2023/01/30/03SplineCurve/" title="CAGD 学习笔记 | 03 样条曲线 (TODO)"
+        <a href="/2023/01/30/03SplineCurve/" title="CAGD 学习笔记 | 03 样条曲线"
            class="list-group-item list-group-item-action
            active">
-          <span class="category-post">CAGD 学习笔记 | 03 样条曲线 (TODO)</span>
+          <span class="category-post">CAGD 学习笔记 | 03 样条曲线</span>
         </a>
       
     
@@ -370,10 +370,10 @@
     
       
       
-        <a href="/2023/02/16/05RationalCurve/" title="CAGD 学习笔记 | 05 有理曲线 (TODO)"
+        <a href="/2023/02/16/05RationalCurve/" title="CAGD 学习笔记 | 05 有理曲线"
            class="list-group-item list-group-item-action
            ">
-          <span class="category-post">CAGD 学习笔记 | 05 有理曲线 (TODO)</span>
+          <span class="category-post">CAGD 学习笔记 | 05 有理曲线</span>
         </a>
       
     
@@ -396,7 +396,7 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">CAGD 学习笔记 | 03 样条曲线 (TODO)</h1>
+            <h1 style="display: none">CAGD 学习笔记 | 03 样条曲线</h1>
             
             
               <div class="markdown-body">
@@ -521,7 +521,11 @@ N_{k, d}(t) &amp; =\frac{t-t_k}{t_{k+d}-t_k} N_{k, d-1}(t)+\frac{t_{k+d+1}-t}{t_
 <p>我们知道, Bézier 曲线的 Bernstein 基函数满足单位分解性, 这使得曲线上的每个点都是控制点的凸组合. 同样地, 我们也希望 B 样条曲线也具备同样的性质. 因此对于有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> 个 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span></span></span></span> 阶的 B 样条基函数的曲线, 它的结点向量为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msub><mi>t</mi><mn>0</mn></msub><mo separator="true">,</mo><msub><mi>t</mi><mn>1</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>t</mi><mrow><mi>n</mi><mo>+</mo><mi>d</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(t_0, t_1, \dots, t_{n+d+1})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight">d</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>, 并且在区间 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><msub><mi>t</mi><mi>d</mi></msub><mo separator="true">,</mo><msub><mi>t</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">[t_d, t_{n+1})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">d</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> 上这些基函数满足单位分解性, 取这一区间为曲线的参数域.</p>
 <h3 id="B-样条曲线的性质">B 样条曲线的性质</h3>
 <p>根据 B 样条基函数的性质, 我们可以得到一些 B 样条曲线的性质.</p>
-<p>TODO</p>
+<ul>
+<li>中间结点只出现 1 次的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span></span></span></span> 阶 B 样条曲线是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>C</mi><mrow><mi>d</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">C^{d-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8491em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span> 的;</li>
+<li>控制点 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">p_k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 只影响曲线上 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>∈</mo><mo stretchy="false">[</mo><msub><mi>t</mi><mi>k</mi></msub><mo separator="true">,</mo><msub><mi>t</mi><mrow><mi>k</mi><mo>+</mo><mn>1</mn><mo>+</mo><mi>d</mi></mrow></msub><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">t \in [t_k, t_{k+1+d}]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6542em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span><span class="mbin mtight">+</span><span class="mord mtight">1</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mclose">]</span></span></span></span> 的部分;</li>
+<li>凸包性, 仿射无关性.</li>
+</ul>
 <h3 id="de-Boor-算法">de Boor 算法</h3>
 <p>在本节中, 我们将介绍如何用 de Boor 算法绘制 B 样条曲线.</p>
 <p>根据 B 样条基函数的递归定义, 我们将直接推导出 de Boor 算法.</p>
@@ -649,15 +653,15 @@ c124.7 8 235 61.7 331 161 31.3 33.3 59.7 72.7 85 118l7 13v35z'/></svg></span></s
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Computer-Aided-Graphics-Design/">#Computer Aided Graphics Design</a>
+        <a href="/tags/Bernstein-Polynomial/">#Bernstein Polynomial</a>
       
         <a href="/tags/Bezier-Curve/">#Bézier Curve</a>
+      
+        <a href="/tags/Computer-Aided-Graphics-Design/">#Computer Aided Graphics Design</a>
       
         <a href="/tags/Bezier-Spline/">#Bézier Spline</a>
       
         <a href="/tags/B-Spline/">#B Spline</a>
-      
-        <a href="/tags/Bernstein-Polynomial/">#Bernstein Polynomial</a>
       
     </div>
   
@@ -669,7 +673,7 @@ c124.7 8 235 61.7 331 161 31.3 33.3 59.7 72.7 85 118l7 13v35z'/></svg></span></s
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>CAGD 学习笔记 | 03 样条曲线 (TODO)</div>
+      <div>CAGD 学习笔记 | 03 样条曲线</div>
       <div>https://ne0.life/2023/01/30/03SplineCurve/</div>
     </div>
     <div class="license-meta">
