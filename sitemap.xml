@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ne0.life/posts/855108466/</loc>
+    
+    <lastmod>2023-03-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://ne0.life/posts/1534275948/</loc>
     
     <lastmod>2023-03-22</lastmod>
@@ -141,6 +150,13 @@
   </url>
   
   <url>
+    <loc>https://ne0.life/tags/Rational-Curve/</loc>
+    <lastmod>2023-03-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://ne0.life/tags/Bezier-Spline/</loc>
     <lastmod>2023-03-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -148,7 +164,7 @@
   </url>
   
   <url>
-    <loc>https://ne0.life/tags/Rational-Curve/</loc>
+    <loc>https://ne0.life/tags/Math-Modeling/</loc>
     <lastmod>2023-03-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -172,6 +188,13 @@
   
   <url>
     <loc>https://ne0.life/categories/%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2023-03-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ne0.life/categories/%E7%94%9F%E6%B4%BB%E4%B8%AD%E7%9A%84%E6%95%B0%E5%AD%A6/</loc>
     <lastmod>2023-03-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
