@@ -8,7 +8,26 @@
     <link href="/posts/1112798068/"/>
     <url>/posts/1112798068/</url>
     
-    <content type="html"><![CDATA[<h1>给强迫症一个干净整洁的 Adobe Acrobat</h1><h2 id="强迫症的碎碎念">强迫症的碎碎念</h2><p>多年以来, 笔者一直在寻找一个 Windows 上的足够完美的 PDF 阅读器, 但是苦于各个阅读器都有各种各样的缺点, 使用的时候总会觉得心神不宁, 坐立难安. 下文中将首先罗列一下笔者使用的 PDF 阅读器的特典, 只对 Acrobat 感兴趣的读者可以跳过到下一节.</p><h3 id="Sumatra-PDF">Sumatra PDF</h3><p>从功能上来说, Sumatra 几乎是完美的阅读器, 轻量又快速, 不会锁定 PDF 文件, 还支持 VIM 键位. 但非常可惜的是 UI 不好看. 尽管在某一个版本把工具栏上旧的拟物图标换成了简洁线条风格的图标, 但是主页上的不可用的工具栏图标仍然很难看, 因此笔者暂时不会把它作为平时主力使用的 PDF 阅读器.</p><p><img src="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2023-02-24-13-20-31.png" alt="主页上的不可用的工具栏图标"></p><p>但是 “不锁定 PDF 文件” 的功能还是很重要的, 而且这还是 Sumatra 具有但 Acrobat 没有的功能, 所以在编写 LaTeX 文档的时候, 笔者还是会使用 Sumatra 用于查看编译结果.</p><h3 id="福昕">福昕</h3><p>Foxit 的 PDF 阅读器和编辑器的版本数不胜数, 而且还分国内版和海外版, 这里所指的是国内版的 “福昕高级PDF编辑器 专业版”.</p><p>Foxit 给我的第一印象就是很差的, 因为他们的首页就非常土, 软件的图标也很难看. 使用之后的感受是, 功能足够全面, 但是 OCR 速度明显不如 Acrobat, UI 只能说称不上难看.</p><h3 id="万兴-PDF-阅读器">万兴 PDF 阅读器</h3><p>和 Foxit 有一样的毛病, 版本很多. UI 虽然现代但也很土, 功能也比较全面, 但是性能比较差, 启动很慢, 用着也不顺手.</p><h3 id="Acrobat">Acrobat</h3><p>功能全面, 性能也是最好的. 缺点不少, 但都是可以解决的. 具体的缺点如下:</p><ul><li>在中国大陆不向个人用户销售正版. 这很好, 心安理得地用盗版了.</li><li>内存占用远高于 Sumatra. 不过关闭 “页面显示 - 渲染 - 使用页面高速缓存” 之后占用的内存还是在可以接受的范围内的.</li><li>UI 上有很多烦人的贴片广告, 以及没有必要的在线账户功能. 下一节就是介绍如何关闭这些东西.<br>也就是说, 只要能去掉 UI 上的一些部分, 那么 Acrobat 就能满足笔者的需要. 事实上这些都是可以设置的, 只是 Adobe 没有将这些设置项展示出来.</li></ul><h2 id="如何关闭-Acrobat-界面上的小广告">如何关闭 Acrobat 界面上的小广告</h2><p>Acrobat 有大量的未在 “首选项” 中展示的设置选项, 它们都保存在 Windows 的注册表中. 我们可以直接修改注册表, 也可以使用 Adobe Customization Wizard 来修改. 本文只介绍前一种方法, 专为这几个设置项下载一个软件是没有必要的.</p><p>下文中提到的注册表中的值, 全部都是  类型. 如果注册表中不存在这些值, 直接新建一个即可.</p><ul><li><p>隐藏标签栏中的登录入口: <code>Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Adobe\&lt;product name&gt;\&lt;version&gt;\FeatureLockDown\cServices\bUpdater</code> 设置为 0 (DWORD 32bit).</p></li><li><p>隐藏 “工具栏 - 帮助” 中的登录入口: <code>Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Adobe\&lt;product name&gt;\&lt;version&gt;\FeatureLockDown\bSuppressSignOut</code> 设置为 0 (DWORD 32bit).</p></li><li><p>隐藏主页第一行中 app 的广告等: <code>Computer\HKEY_CURRENT_USER\Software\Adobe\&lt;product name&gt;\&lt;version&gt;\HomeWelcomeFirstMile\bEnableFirstMile</code> 设置为 0 (DWORD 32bit).</p></li><li><p>隐藏文档阅读界面右下角的 store and share files in the document cloud: <code>Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Adobe\&lt;product name&gt;\&lt;version&gt;\FeatureLockDown\cIPM\bDontShowMsgWhenViewingDoc</code> 设置为 0 (DWORD 32bit).</p></li></ul><p>对于 Acrobat DC 来说, &lt;product name&gt; 处应填 “Adobe Acrobat”, &lt;version&gt; 处应填 “DC”. 这些设置也适用于 Adobe Reader.</p>]]></content>
+    <content type="html"><![CDATA[<h1>给强迫症一个干净整洁的 Adobe Acrobat</h1><h2 id="强迫症的碎碎念">强迫症的碎碎念</h2><p>多年以来, 笔者一直在寻找一个 Windows 上的足够完美的 PDF 阅读器, 但是苦于各个阅读器都有各种各样的缺点, 使用的时候总会觉得心神不宁, 坐立难安. 下文中将首先罗列一下笔者使用的 PDF 阅读器的特典, 只对 Acrobat 感兴趣的读者可以跳过到下一节.</p><h3 id="Sumatra-PDF">Sumatra PDF</h3><p>从功能上来说, Sumatra 几乎是完美的阅读器, 轻量又快速, 不会锁定 PDF 文件, 还支持 VIM 键位. 但非常可惜的是 UI 不好看. 尽管在某一个版本把工具栏上旧的拟物图标换成了简洁线条风格的图标, 但是主页上的不可用的工具栏图标仍然很难看, 因此笔者暂时不会把它作为平时主力使用的 PDF 阅读器.</p><p><img src="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2023-02-24-13-20-31.png" alt="主页上的不可用的工具栏图标"></p><p>但是 “不锁定 PDF 文件” 的功能还是很重要的, 而且这还是 Sumatra 具有但 Acrobat 没有的功能, 所以在编写 LaTeX 文档的时候, 笔者还是会使用 Sumatra 用于查看编译结果.</p><h3 id="福昕">福昕</h3><p>Foxit 的 PDF 阅读器和编辑器的版本数不胜数, 而且还分国内版和海外版, 这里所指的是国内版的 “福昕高级PDF编辑器 专业版”.</p><p>Foxit 给我的第一印象就是很差的, 因为他们的首页就非常土, 软件的图标也很难看. 使用之后的感受是, 功能足够全面, 但是 OCR 速度明显不如 Acrobat, UI 只能说称不上难看.</p><h3 id="万兴-PDF-阅读器">万兴 PDF 阅读器</h3><p>和 Foxit 有一样的毛病, 版本很多. UI 虽然现代但也很土, 功能也比较全面, 但是性能比较差, 启动很慢, 用着也不顺手.</p><h3 id="Acrobat">Acrobat</h3><p>功能全面, 性能也是最好的. 缺点不少, 但都是可以解决的. 具体的缺点如下:</p><ul><li>在中国大陆不向个人用户销售正版. 这很好, 心安理得地用盗版了.</li><li>内存占用远高于 Sumatra. 不过关闭 “页面显示 - 渲染 - 使用页面高速缓存” 之后占用的内存还是在可以接受的范围内的.</li><li>UI 上有很多烦人的贴片广告, 以及没有必要的在线账户功能. 下一节就是介绍如何关闭这些东西.<br>也就是说, 只要能去掉 UI 上的一些部分, 那么 Acrobat 就能满足笔者的需要. 事实上这些都是可以设置的, 只是 Adobe 没有将这些设置项展示出来.</li></ul><h2 id="如何关闭-Acrobat-界面上的小广告">如何关闭 Acrobat 界面上的小广告</h2><p>Acrobat 有大量的未在 “首选项” 中展示的设置选项, 它们都保存在 Windows 的注册表中. 我们可以直接修改注册表, 也可以使用 Adobe Customization Wizard 来修改. 本文只介绍前一种方法, 专为这几个设置项下载一个软件是没有必要的.</p><p>下文中提到的注册表中的值, 全部都是  类型. 如果注册表中不存在这些值, 直接新建一个即可.</p><ul><li><p>隐藏标签栏中的登录入口: <code>Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Adobe\&lt;product name&gt;\&lt;version&gt;\FeatureLockDown\cServices\bUpdater</code> 设置为 0 (DWORD 32bit).</p></li><li><p>隐藏 “工具栏 - 帮助” 中的登录入口: <code>Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Adobe\&lt;product name&gt;\&lt;version&gt;\FeatureLockDown\bSuppressSignOut</code> 设置为 0 (DWORD 32bit).</p></li><li><p>隐藏主页第一行中 app 的广告等: <code>Computer\HKEY_CURRENT_USER\Software\Adobe\&lt;product name&gt;\&lt;version&gt;\HomeWelcomeFirstMile\bEnableFirstMile</code> 设置为 0 (DWORD 32bit).</p></li><li><p>隐藏文档阅读界面右下角的 store and share files in the document cloud: <code>Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Adobe\&lt;product name&gt;\&lt;version&gt;\FeatureLockDown\cIPM\bDontShowMsgWhenViewingDoc</code> 设置为 0 (DWORD 32bit).</p></li></ul><p>对于 Acrobat DC 来说, &lt;product name&gt; 处应填 “Adobe Acrobat”, &lt;version&gt; 处应填 “DC”. 这些设置也适用于 Adobe Reader.</p><div class="note note-default">            <p>2023.3.22 更新</p><p>笔者发现 PDF-XChange Editor 实际上是更好的选择:</p><ul><li>它的免费版功能足够全面, 而且可以在设置中关闭所有付费功能的入口;</li><li>启动快, 性能好, 占用内存远少于 Acrobat (但还是比 Sumatra 更多);</li><li>外观虽然不大好看, 但是用户对 UI 的控制很强, 可以定制出符合自己习惯的 UI.</li></ul><p>所以笔者目前的 PDF 解决方案是, 论文使用 Zotero 内置的阅读器, 这样很方便同步并管理批注; 书本和其它文件就用 PDF-XChange Editor.</p>          </div>]]></content>
+    
+    
+    <categories>
+      
+      <category>折腾笔记</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>折腾笔记 | 修正淘宝的反人类搜索框</title>
+    <link href="/posts/1112798068/"/>
+    <url>/posts/1112798068/</url>
+    
+    <content type="html"><![CDATA[<h1>修正淘宝网页的反人类搜索框</h1><h2 id="问题">问题</h2><p>自十余年前笔者开始上网冲浪以来, 就一直对淘宝的搜索框感到困惑. 笔者认为每一个熟练使用键盘的人都能达成一个共识: 在编辑文本时, 键盘上的 Home 键表示将光标移动到这一行的行首, 而 End 键表示移到行尾.</p><p>然而伟大的淘宝的产品经理不这么想, 他们认为他们给出的搜索建议远比用户输入的文字重要, 他们设计了这样的逻辑: 在搜索框中按下 Home 键时, 将搜索框中的文字替换为第一个搜索建议, 按下 End 键时替换为最后一个. 更令人迷惑的是, 光标仍然会按照正常的逻辑移动.</p><p>最近笔者冲浪时看到了这个帖子: <a href="https://www.v2ex.com/t/468888">淘宝 PC web 搜索输入框对 Home/End 键的特殊处理反人类！ - V2EX<br></a>, 回复中有人用油猴脚本解决了这一问题, 但并没有提供这个脚本. 笔者于是决定自己尝试解决这一问题, 下文中将给出一种并不优雅的解决方案.</p><h2 id="观察">观察</h2><p>首先对淘宝的网页进行一个观察. 为了方便, 笔者首先观察了 <a href="s.taobao.com">s.taobao.com</a> 这一站点.</p><p>利用 F12 的开发者工具, 查看搜索框的监听器中与 <code>keydown</code> 有关的脚本, 找到了下图中的脚本, 在脚本中搜索关键词, 确定了就是它负责实现这个功能. 其中 <code>_getNextEnabledHighlighted</code> 函数就是切换搜索建议的高亮, 并且修改搜索框的函数.</p><p><img src="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2023-03-22-20-27-55.png" alt=""></p><p>通过在这个函数中打断点, 笔者发现按下 Home 键时, 在 <a href="s.taobao.com">s.taobao.com</a> 中, <code>_getNextEnabledHighlighted</code> 被下图中的这个脚本的这一行调用, 而在 <a href="taobao.com">taobao.com</a> 中 <code>_getNextEnabledHighlighted</code> 被上图中选中的部分调用.</p><p><img src="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2023-03-22-20-37-56.png" alt=""></p><h2 id="解决方案">解决方案</h2><p>笔者本想尝试用油猴脚本来屏蔽这个功能, 但是折腾了一个小时之后发现这似乎不是现学现卖就能很容易实现的. 然后笔者想到是否能直接替换掉这两个脚本中调用 <code>_getNextEnabledHighlighted</code> 的部分, 而这是非常容易实现的.</p><p>事实上, Chromium 系浏览器的开发者工具就提供了这一功能. 如下图, 点击 “源代码 - 覆盖 - 选择替代文件夹”, 然后新建一个本地文件夹, 并授予开发者工具访问它的权限.</p><p><img src="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2023-03-22-20-43-25.png" alt=""></p><p>右击你要覆盖的脚本, 点击 “保存以备替代”, 然后直接在本地的脚本上作修改即可.</p><p><img src="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2023-03-22-20-45-00.png" alt=""></p><p>但是保存到本地之后代码会失去格式, 全部坍到一行上, 就不方便编辑了. 可以在 [点击 “保存以备替代”] 之前先将脚本的内容全选并复制, 保存后再全部粘贴, 这样就可以得到有格式的代码. 这时候进行需要的修改再 Ctrl+S 保存即可.</p>]]></content>
     
     
     <categories>
@@ -66,11 +85,11 @@
     
     <tags>
       
-      <tag>Bézier Curve</tag>
-      
       <tag>Computer Aided Graphics Design</tag>
       
       <tag>Polar Form and Blossom</tag>
+      
+      <tag>Bézier Curve</tag>
       
       <tag>B Spline</tag>
       
@@ -116,13 +135,13 @@
     
     <tags>
       
-      <tag>Bernstein Polynomial</tag>
+      <tag>Computer Aided Graphics Design</tag>
       
       <tag>Bézier Curve</tag>
       
-      <tag>Computer Aided Graphics Design</tag>
-      
       <tag>B Spline</tag>
+      
+      <tag>Bernstein Polynomial</tag>
       
       <tag>Bézier Spline</tag>
       
@@ -149,11 +168,11 @@
     
     <tags>
       
-      <tag>Bernstein Polynomial</tag>
+      <tag>Computer Aided Graphics Design</tag>
       
       <tag>Bézier Curve</tag>
       
-      <tag>Computer Aided Graphics Design</tag>
+      <tag>Bernstein Polynomial</tag>
       
     </tags>
     
@@ -178,13 +197,13 @@
     
     <tags>
       
+      <tag>Bézier Curve</tag>
+      
       <tag>Interpolation</tag>
       
       <tag>Fitting</tag>
       
       <tag>Bernstein Polynomial</tag>
-      
-      <tag>Bézier Curve</tag>
       
     </tags>
     
