@@ -56,24 +56,6 @@
   </url>
   
   <url>
-    <loc>https://ne0.io/posts/2220277341/</loc>
-    
-    <lastmod>2023-03-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ne0.io/posts/1906251530/</loc>
-    
-    <lastmod>2023-03-23</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://ne0.io/posts/1627199113/</loc>
     
     <lastmod>2023-03-23</lastmod>
@@ -84,6 +66,24 @@
   
   <url>
     <loc>https://ne0.io/posts/1534275948/</loc>
+    
+    <lastmod>2023-03-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ne0.io/posts/2220277341/</loc>
+    
+    <lastmod>2023-03-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ne0.io/posts/1906251530/</loc>
     
     <lastmod>2023-03-23</lastmod>
     
@@ -110,34 +110,6 @@
 
   
   <url>
-    <loc>https://ne0.io/tags/Interpolation/</loc>
-    <lastmod>2023-03-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ne0.io/tags/Fitting/</loc>
-    <lastmod>2023-03-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ne0.io/tags/Bernstein-Polynomial/</loc>
-    <lastmod>2023-03-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://ne0.io/tags/Bezier-Curve/</loc>
-    <lastmod>2023-03-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://ne0.io/tags/Computer-Aided-Graphics-Design/</loc>
     <lastmod>2023-03-30</lastmod>
     <changefreq>weekly</changefreq>
@@ -145,14 +117,14 @@
   </url>
   
   <url>
-    <loc>https://ne0.io/tags/Rational-Curve/</loc>
+    <loc>https://ne0.io/tags/Polar-Form-and-Blossom/</loc>
     <lastmod>2023-03-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://ne0.io/tags/Polar-Form-and-Blossom/</loc>
+    <loc>https://ne0.io/tags/Bezier-Curve/</loc>
     <lastmod>2023-03-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -167,6 +139,34 @@
   
   <url>
     <loc>https://ne0.io/tags/Bezier-Spline/</loc>
+    <lastmod>2023-03-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ne0.io/tags/Bernstein-Polynomial/</loc>
+    <lastmod>2023-03-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ne0.io/tags/Interpolation/</loc>
+    <lastmod>2023-03-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ne0.io/tags/Fitting/</loc>
+    <lastmod>2023-03-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://ne0.io/tags/Rational-Curve/</loc>
     <lastmod>2023-03-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
