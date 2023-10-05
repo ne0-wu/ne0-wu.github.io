@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>笔记 | 01 MatLab 中常用的简短代码</title>
+    <link href="/posts/2815144751/"/>
+    <url>/posts/2815144751/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1>写 MatLab 代码时造的轮子</h1><p>因为当前版本的<strong>北太天元</strong>计算软件缺少大量的 MatLab 函数, 因此编写程序的时候需要自己写一些常用函数. 在此记录下来以实现代码的重复利用.</p><h2 id="数值计算">数值计算</h2><h3 id="三点-Gauss-积分公式">三点 Gauss 积分公式</h3><h4 id="给定区间分段">给定区间分段</h4><p>适用于给定区间分段的情形, 积分区间为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>x</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo separator="true">,</mo><mi>x</mi><mo stretchy="false">(</mo><mtext>end</mtext><mo stretchy="false">)</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[x(1), x(\text{end})]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal">x</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">x</span><span class="mopen">(</span><span class="mord text"><span class="mord">end</span></span><span class="mclose">)]</span></span></span></span>, 在分段 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>x</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo><mo separator="true">,</mo><mi>x</mi><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><mo stretchy="false">[</mo><mi>x</mi><mo stretchy="false">(</mo><mtext>end</mtext><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo separator="true">,</mo><mi>x</mi><mo stretchy="false">(</mo><mtext>end</mtext><mo stretchy="false">)</mo><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[x(1), x(2)], \dots, [x(\text{end}-1), x(\text{end})]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal">x</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">x</span><span class="mopen">(</span><span class="mord">2</span><span class="mclose">)]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mopen">[</span><span class="mord mathnormal">x</span><span class="mopen">(</span><span class="mord text"><span class="mord">end</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">x</span><span class="mopen">(</span><span class="mord text"><span class="mord">end</span></span><span class="mclose">)]</span></span></span></span> 上分别用三点 Gauss 公式积分.</p><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs MatLab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">result</span> = <span class="hljs-title">gaussQuadrature</span><span class="hljs-params">(f, x)</span></span><br>    intervals = [x(<span class="hljs-number">1</span>:(<span class="hljs-keyword">end</span> - <span class="hljs-number">1</span>)); x(<span class="hljs-number">2</span>:<span class="hljs-keyword">end</span>)];<br>    knots = [(<span class="hljs-number">1</span>+<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">3</span>/<span class="hljs-number">5</span>))/<span class="hljs-number">2</span>, (<span class="hljs-number">1</span>-<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">3</span>/<span class="hljs-number">5</span>))/<span class="hljs-number">2</span>; ...<br>             <span class="hljs-number">1</span>/<span class="hljs-number">2</span>            , <span class="hljs-number">1</span>/<span class="hljs-number">2</span>            ; ...<br>             (<span class="hljs-number">1</span>-<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">3</span>/<span class="hljs-number">5</span>))/<span class="hljs-number">2</span>, (<span class="hljs-number">1</span>+<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">3</span>/<span class="hljs-number">5</span>))/<span class="hljs-number">2</span>] * intervals;<br>    result = sum([<span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">5</span>] * f(knots) .* (x(<span class="hljs-number">2</span>:<span class="hljs-keyword">end</span>) - x(<span class="hljs-number">1</span>:(<span class="hljs-keyword">end</span> - <span class="hljs-number">1</span>)))) / <span class="hljs-number">18</span>;<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure><h4 id="向量值函数">向量值函数</h4><p>适用于向量值函数.<br>将 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[a, b]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mclose">]</span></span></span></span> 变换到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[0, 1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span> 上, 再用三点 Gauss 积分公式计算积分.</p><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs MatLab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">result</span> = <span class="hljs-title">gaussQuadratureVectorValued</span><span class="hljs-params">(f, a, b)</span></span><br>    knots = [a, b] * ...<br>            [(<span class="hljs-number">1</span>+<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">3</span>/<span class="hljs-number">5</span>))/<span class="hljs-number">2</span>, <span class="hljs-number">1</span>/<span class="hljs-number">2</span>, (<span class="hljs-number">1</span>-<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">3</span>/<span class="hljs-number">5</span>))/<span class="hljs-number">2</span>; ...<br>             (<span class="hljs-number">1</span>-<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">3</span>/<span class="hljs-number">5</span>))/<span class="hljs-number">2</span>, <span class="hljs-number">1</span>/<span class="hljs-number">2</span>, (<span class="hljs-number">1</span>+<span class="hljs-built_in">sqrt</span>(<span class="hljs-number">3</span>/<span class="hljs-number">5</span>))/<span class="hljs-number">2</span>];<br>    result = [<span class="hljs-number">5</span>, <span class="hljs-number">8</span>, <span class="hljs-number">5</span>] * f(knots)&#x27; / <span class="hljs-number">18</span>;<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>学习笔记</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>论文阅读 | 02 基于 FFT 的无互锁的装箱算法</title>
     <link href="/posts/3282821360/"/>
     <url>/posts/3282821360/</url>
@@ -185,11 +204,11 @@
     
     <tags>
       
+      <tag>Bézier Curve</tag>
+      
       <tag>Computer Aided Graphics Design</tag>
       
       <tag>Polar Form and Blossom</tag>
-      
-      <tag>Bézier Curve</tag>
       
       <tag>B Spline</tag>
       
@@ -237,15 +256,15 @@
     
     <tags>
       
-      <tag>Computer Aided Graphics Design</tag>
+      <tag>Bernstein Polynomial</tag>
       
       <tag>Bézier Curve</tag>
+      
+      <tag>Computer Aided Graphics Design</tag>
       
       <tag>B Spline</tag>
       
       <tag>Bézier Spline</tag>
-      
-      <tag>Bernstein Polynomial</tag>
       
     </tags>
     
@@ -272,11 +291,11 @@
     
     <tags>
       
-      <tag>Computer Aided Graphics Design</tag>
+      <tag>Bernstein Polynomial</tag>
       
       <tag>Bézier Curve</tag>
       
-      <tag>Bernstein Polynomial</tag>
+      <tag>Computer Aided Graphics Design</tag>
       
     </tags>
     
@@ -303,13 +322,13 @@
     
     <tags>
       
-      <tag>Bézier Curve</tag>
-      
-      <tag>Bernstein Polynomial</tag>
-      
       <tag>Interpolation</tag>
       
       <tag>Fitting</tag>
+      
+      <tag>Bernstein Polynomial</tag>
+      
+      <tag>Bézier Curve</tag>
       
     </tags>
     
