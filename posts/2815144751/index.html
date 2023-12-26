@@ -16,15 +16,15 @@
   <meta name="author" content="Ne0 Wu">
   <meta name="keywords" content="">
   
-    <meta name="description" content="写 MatLab 代码时造的轮子 因为当前版本的北太天元计算软件缺少大量的 MatLab 函数, 因此编写程序的时候需要自己写一些常用函数. 在此记录下来以实现代码的重复利用. 数值计算 三点 Gauss 积分公式 给定区间分段 适用于给定区间分段的情形, 积分区间为 [x(1),x(end)][x(1), x(\text{end})][x(1),x(end)], 在分段 [x(1),x(2)],">
+    <meta name="description" content="写 MatLab 代码时造的轮子 记录下自己写一些常用函数, 以实现代码的重复利用. 网格 三角形面积 TTT 为三角形面列表, 存储顶点的 ID; VVV 为顶点列表, 存储顶点的位置. 用海伦公式计算三角形的面积, 适用于任意维数, 缺点是速度较慢. 123456789101112function areas &#x3D; triangleArea(T, V)    % 计算每个三角形的边长    a">
 <meta property="og:type" content="article">
 <meta property="og:title" content="笔记 | 01 MatLab 中常用的简短代码">
 <meta property="og:url" content="https://ne0.io/posts/2815144751/">
 <meta property="og:site_name" content="Ne0&#39;s Blog">
-<meta property="og:description" content="写 MatLab 代码时造的轮子 因为当前版本的北太天元计算软件缺少大量的 MatLab 函数, 因此编写程序的时候需要自己写一些常用函数. 在此记录下来以实现代码的重复利用. 数值计算 三点 Gauss 积分公式 给定区间分段 适用于给定区间分段的情形, 积分区间为 [x(1),x(end)][x(1), x(\text{end})][x(1),x(end)], 在分段 [x(1),x(2)],">
+<meta property="og:description" content="写 MatLab 代码时造的轮子 记录下自己写一些常用函数, 以实现代码的重复利用. 网格 三角形面积 TTT 为三角形面列表, 存储顶点的 ID; VVV 为顶点列表, 存储顶点的位置. 用海伦公式计算三角形的面积, 适用于任意维数, 缺点是速度较慢. 123456789101112function areas &#x3D; triangleArea(T, V)    % 计算每个三角形的边长    a">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-10-04T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-14T01:32:27.760Z">
+<meta property="article:modified_time" content="2023-12-26T15:46:22.397Z">
 <meta property="article:author" content="Ne0 Wu">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -221,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          939 字
+          1.2k 字
         
       </span>
     
@@ -232,7 +232,7 @@
         
         
         
-          2 分钟
+          3 分钟
         
       </span>
     
@@ -276,7 +276,12 @@
               <div class="markdown-body">
                 
                 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1>写 MatLab 代码时造的轮子</h1>
-<p>因为当前版本的<strong>北太天元</strong>计算软件缺少大量的 MatLab 函数, 因此编写程序的时候需要自己写一些常用函数. 在此记录下来以实现代码的重复利用.</p>
+<p>记录下自己写一些常用函数, 以实现代码的重复利用.</p>
+<h2 id="网格">网格</h2>
+<h3 id="三角形面积">三角形面积</h3>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span></span></span></span> 为三角形面列表, 存储顶点的 ID; <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span></span></span> 为顶点列表, 存储顶点的位置.</p>
+<p>用海伦公式计算三角形的面积, 适用于任意维数, 缺点是速度较慢.</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs MatLab"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">areas</span> = <span class="hljs-title">triangleArea</span><span class="hljs-params">(T, V)</span></span><br>    <span class="hljs-comment">% 计算每个三角形的边长</span><br>    a = <span class="hljs-built_in">sqrt</span>(sum((V(T(:,<span class="hljs-number">2</span>), :) - V(T(:,<span class="hljs-number">1</span>), :)).^<span class="hljs-number">2</span>, <span class="hljs-number">2</span>));<br>    b = <span class="hljs-built_in">sqrt</span>(sum((V(T(:,<span class="hljs-number">3</span>), :) - V(T(:,<span class="hljs-number">2</span>), :)).^<span class="hljs-number">2</span>, <span class="hljs-number">2</span>));<br>    c = <span class="hljs-built_in">sqrt</span>(sum((V(T(:,<span class="hljs-number">1</span>), :) - V(T(:,<span class="hljs-number">3</span>), :)).^<span class="hljs-number">2</span>, <span class="hljs-number">2</span>));<br><br>    <span class="hljs-comment">% 计算半周长</span><br>    s = (a + b + c) / <span class="hljs-number">2</span>;<br><br>    <span class="hljs-comment">% 使用海伦公式计算面积</span><br>    areas = <span class="hljs-built_in">sqrt</span>(s .* (s - a) .* (s - b) .* (s - c));<br><span class="hljs-keyword">end</span><br></code></pre></td></tr></table></figure>
 <h2 id="数值计算">数值计算</h2>
 <h3 id="三点-Gauss-积分公式">三点 Gauss 积分公式</h3>
 <h4 id="给定区间分段">给定区间分段</h4>
