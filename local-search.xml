@@ -185,9 +185,9 @@
     
     <tags>
       
-      <tag>Bézier Curve</tag>
-      
       <tag>Computer Aided Graphics Design</tag>
+      
+      <tag>Bézier Curve</tag>
       
       <tag>B Spline</tag>
       
@@ -237,15 +237,15 @@
     
     <tags>
       
-      <tag>Bernstein Polynomial</tag>
+      <tag>Computer Aided Graphics Design</tag>
       
       <tag>Bézier Curve</tag>
-      
-      <tag>Computer Aided Graphics Design</tag>
       
       <tag>Bézier Spline</tag>
       
       <tag>B Spline</tag>
+      
+      <tag>Bernstein Polynomial</tag>
       
     </tags>
     
@@ -272,11 +272,11 @@
     
     <tags>
       
-      <tag>Bernstein Polynomial</tag>
+      <tag>Computer Aided Graphics Design</tag>
       
       <tag>Bézier Curve</tag>
       
-      <tag>Computer Aided Graphics Design</tag>
+      <tag>Bernstein Polynomial</tag>
       
     </tags>
     
@@ -303,13 +303,13 @@
     
     <tags>
       
-      <tag>Interpolation</tag>
-      
-      <tag>Fitting</tag>
+      <tag>Bézier Curve</tag>
       
       <tag>Bernstein Polynomial</tag>
       
-      <tag>Bézier Curve</tag>
+      <tag>Interpolation</tag>
+      
+      <tag>Fitting</tag>
       
     </tags>
     
