@@ -8,7 +8,7 @@
     <link href="/posts/2609180986/"/>
     <url>/posts/2609180986/</url>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1>Windows 远程桌面的解决方案</h1><p>笔者在过去的几个月中, 折腾了一下在自宅和在办公室的 Windows 电脑之间的远程桌面. 写一篇文章来记录一下各种方案的实现效果, 希望能为他人提供一些参考.</p><h2 id="引言">引言</h2><p>在介绍具体的方案之前, 有必要先介绍各种方案的实现方法. 要实现远程桌面主要只要解决两个问题:</p><ul><li>如何建立服务端和客户端之间的连接?</li><li>如何将桌面编码以进行传输?</li></ul><p>我们会遇到第一个问题, 原因一个是我们目前处于 IPv4 地址用完, 而 IPv6 又未普及的时期, 家用宽带的用户都被挡在了 NAT 之后, 另一个是 ISP 会限制家用宽带用户之间的 P2P 通信. 这一问题主要有两种解决方案: 使用软件实现 P2P 的打洞, 或者用公网上的服务器作为跳板进行连接. 笔者是用 ZeroTier 实现的 P2P 打洞, 这个软件很易于使用, 因此不在此详述.</p><p>第二个问题则仅仅是一个技术问题. 大部分情况下, 远程桌面采用的都是捕捉服务端的画面作为视频流来传递给客户端. 同时, 微软提供的 Windows 自带的远程桌面协议 (Remote Desktop Protocol, RDP) 传输的是渲染指令, 在办公场景下 (i.e. 视频和游戏以外的场景) 对带宽的要求要远远低于传输视频的做法.</p><p>另外, 值得一提的是, 微软区分了 “远程桌面” 和 “远程控制” 的概念. 前者相当于将客户端作为服务端的显示器, 服务端如果有显示器的话, 上面是看不到客户端的画面和操作的, 后者则能看到. 此外, 微软的 RDP 在 Windows Server 上还支持多个用户同时登录.</p><h2 id="解决方案">解决方案</h2><h3 id="开箱即用的方案">开箱即用的方案</h3><ul><li>❌ 是否 P2P</li><li>✔️ 是否直接传输视频流</li></ul><p>常见的远程桌面软件, 如国外的 TeamViewer, AnyDesk, 国内的向日葵, ToDesk 等等, 都是通过中转服务器传输视频流的方式实现的. 它们的优点是开箱即用, 只需要在服务端和客户端上安装相应的软件即可开始使用, 无需额外的设置, 并且十分稳定可靠, 可以作为其它方案无法使用时的后备方案. 缺点是免费版的性能受到限制, 只能传输 30 FPS 的高度压缩的画面, 也不支持游戏手柄的输入.</p><p>这些方案的免费版的缺点基本上都是来自中转服务器的成本的存在, 如果我们使用 P2P 的方案就可以直接绕过这一开销, 并且获得很好的免费体验.</p><h3 id="P2P-的视频流方案">P2P 的视频流方案</h3><ul><li>✔️ 是否 P2P</li><li>✔️ 是否直接传输视频流</li></ul><p>为了避免中转服务器的成本, 我们可以选择直接建立服务端和客户端之间的 P2P 连接, 然后再使用一些串流的方案. 可选的方案有以下几种:</p><table><thead><tr><th>服务端</th><th>客户端</th></tr></thead><tbody><tr><td>Geforce Experience / Sunshine</td><td>Moonlight</td></tr><tr><td>Steam</td><td>Steam</td></tr><tr><td>Parsec</td><td>Parsec</td></tr></tbody></table><p>Moonlight 是写给 Geforce Experience 的一个开源客户端, 后者原本是 Nvidia 为了给 Nvidia Shield 串流 PC 而写的, 现在已经被抛弃了. 目前可以使用 Sunshine 作为 Moonlight 的服务端 (Sunshine 原本又是 AMD 用户为 Moonlight 而写的).</p><p>由于 Steam 的远程畅玩功能原本就是为游戏打造的, 所以要想启动它至少要启动一个游戏或是第三方程序, 非常不方便. 另外, 由于 Steam 不支持捕获全部的键盘输入, 所以几乎完全无法用于办公的场景.</p><p>Parsec 也是一个开箱即用的串流软件, 但笔者没有将它放到上一个小节, 这是因为 Parsec 支持自动地建立服务端和客户端的 P2P 连接, 所以它的性能表现远远强于其它的串流软件.</p><p>关于串流的效果, 这几种方案都相当不错, 在同城同运营商的情况下, 可以做到 1080P 60 FPS 的较高码率的画面, 并且有很低的延迟 (笔者测试一般都能达到 50 ms 以下, 相当于 60 帧中的 3 帧), 在稳定的情况下可以畅玩任何游戏了.</p><p>最后, Moonlight 不支持复制粘贴, Parsec 支持剪贴板内的复制粘贴, 但不支持文件传输. 这两点缺陷使得它们难以用于办公.</p><h3 id="P2P-的-RDP-方案">P2P 的 RDP 方案</h3><ul><li>✔️ 是否 P2P</li><li>❌ 是否直接传输视频流</li></ul><p>前面已经提到, 对于办公场景, 微软的 RDP 是一个很好的选择, 它理所当然地支持复制粘贴和文件传输. 此外, RDP 还支持在不改变服务端机器的分辨率设置时使用任意的分辨率, 如果使用 UWP 版的 RDP 或者开源的 1Remote 客户端的话, 还可以随时改变窗口的大小来调整分辨率.</p><p>不过, RDP 并不是没有缺点, 它很奇怪地不支持游戏手柄 (它连手写笔都支持), UI 比较难看, 快捷键也不太好用 (Ctrl + Alt + Break 来退出). 最后, 在跨域使用 RDP 时, 用 ZeroTier 建立虚拟局域网似乎已经是最方便的方法. 笔者还尝试了用 Cloudflare Tunnel 作为 RDP 的中转, 但因为中国大陆没有 Cloudflare 的服务器, 导致延迟高到完全不可用, 只能作罢.</p><h2 id="总结">总结</h2><p>总的来说, 很难有一个完美的 all-in-one 的远程桌面方案. 笔者建议按照以下的优先级来实现 Windows 的远程桌面:</p><ul><li>Parsec, 开箱即用且效果极好</li><li>Moonlight 或 RDP, 取决于你的需求是游戏还是办公, 需要打洞</li><li>ToDesk, 笔者选取的备用方案, 并没有什么特别的理由</li></ul>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1>Windows 远程桌面的解决方案</h1><p>笔者在过去的几个月中, 折腾了一下在自宅和在办公室的 Windows 电脑之间的远程桌面. 写一篇文章来记录一下各种方案的实现效果, 希望能为他人提供一些参考.</p><h2 id="引言">引言</h2><p>在介绍具体的方案之前, 有必要先介绍各种方案的实现方法. 要实现远程桌面主要只要解决两个问题:</p><ul><li>如何建立服务端和客户端之间的连接?</li><li>如何将桌面编码以进行传输?</li></ul><p>我们会遇到第一个问题, 原因一个是我们目前处于 IPv4 地址用完, 而 IPv6 又未普及的时期, 家用宽带的用户都被挡在了 NAT 之后, 另一个是 ISP 会限制家用宽带用户之间的 P2P 通信. 这一问题主要有两种解决方案: 使用软件实现 P2P 的连接, 或者用公网上的服务器作为跳板进行连接. 笔者是用 ZeroTier 构建虚拟局域网实现的 P2P 连接, 这个软件很易于使用, 因此不在此详述.</p><p>第二个问题则仅仅是一个技术问题. 大部分情况下, 远程桌面采用的都是捕捉服务端的画面作为视频流来传递给客户端. 同时, 微软提供的 Windows 自带的远程桌面协议 (Remote Desktop Protocol, RDP) 传输的是渲染指令, 在办公场景下 (i.e. 视频和游戏以外的场景) 对带宽的要求要远远低于传输视频的做法. 当然, 在视频和游戏时, RDP 同样会采用传输视频流的方式, 所以理论上它的体验总是不差于只是用视频流的方案.</p><p>另外, 值得一提的是, 微软区分了 “远程桌面” 和 “远程控制” 的概念. 前者相当于将客户端作为服务端的显示器, 服务端如果有显示器的话, 上面是看不到客户端的画面和操作的, 后者则能看到. 此外, 微软的 RDP 在 Windows Server 上还支持多个用户同时登录.</p><h2 id="解决方案">解决方案</h2><h3 id="开箱即用的方案">开箱即用的方案</h3><ul><li>❌ 是否 P2P</li><li>✔️ 是否直接传输视频流</li></ul><p>常见的远程桌面软件, 如国外的 TeamViewer, AnyDesk, 国内的向日葵, ToDesk 等等, 都是通过中转服务器传输视频流的方式实现的. 它们的优点是开箱即用, 只需要在服务端和客户端上安装相应的软件即可开始使用, 无需额外的设置, 并且十分稳定可靠, 可以作为其它方案无法使用时的后备方案. 缺点是免费版的性能受到限制, 只能传输 30 FPS 的高度压缩的画面, 也不支持游戏手柄的输入.</p><p>这些方案的免费版的缺点基本上都是来自中转服务器的成本的存在, 如果我们使用 P2P 的方案就可以直接绕过这一开销, 并且获得很好的免费体验.</p><h3 id="P2P-的视频流方案">P2P 的视频流方案</h3><ul><li>✔️ 是否 P2P</li><li>✔️ 是否直接传输视频流</li></ul><p>为了避免中转服务器的成本, 我们可以选择直接建立服务端和客户端之间的 P2P 连接, 然后再使用一些串流的方案. 可选的方案有以下几种:</p><table><thead><tr><th>服务端</th><th>客户端</th></tr></thead><tbody><tr><td>Geforce Experience / Sunshine</td><td>Moonlight</td></tr><tr><td>Steam</td><td>Steam</td></tr><tr><td>Parsec</td><td>Parsec</td></tr></tbody></table><p>Moonlight 是写给 Geforce Experience 的一个开源客户端, 后者原本是 Nvidia 为了给 Nvidia Shield 串流 PC 而写的, 现在已经被抛弃了. 目前可以使用 Sunshine 作为 Moonlight 的服务端 (Sunshine 原本又是 AMD 用户为 Moonlight 而写的).</p><p>由于 Steam 的远程畅玩功能原本就是为游戏打造的, 所以要想启动它至少要启动一个游戏或是第三方程序, 非常不方便. 另外, 由于 Steam 不支持捕获全部的键盘输入, 所以几乎完全无法用于办公的场景.</p><p>Parsec 也是一个开箱即用的串流软件, 但笔者没有将它放到上一个小节, 这是因为 Parsec 支持自动地建立服务端和客户端的 P2P 连接, 所以它的性能表现远远强于其它的串流软件.</p><p>关于串流的效果, 这几种方案都相当不错, 在同城同运营商的情况下, 可以做到 1080P 60 FPS 的较高码率的画面, 并且有很低的延迟 (笔者测试一般都能达到 50 ms 以下, 相当于 60 帧中的 3 帧), 在稳定的情况下可以畅玩任何游戏了.</p><p>最后, Moonlight 不支持复制粘贴, Parsec 支持剪贴板内的复制粘贴, 但不支持文件传输. 这两点缺陷使得它们难以用于办公.</p><h3 id="P2P-的-RDP-方案">P2P 的 RDP 方案</h3><ul><li>✔️ 是否 P2P</li><li>❌ 是否直接传输视频流</li></ul><p>前面已经提到, 对于办公场景, 微软的 RDP 是一个很好的选择, 它理所当然地支持复制粘贴和文件传输. 此外, RDP 还支持在不改变服务端机器的分辨率设置时使用任意的分辨率, 如果使用 UWP 版的 RDP 或者开源的 1Remote 客户端的话, 还可以随时改变窗口的大小来调整分辨率.</p><!-- 不过, RDP 并不是没有缺点, 它很奇怪地不支持游戏手柄 (它连手写笔都支持), UI 比较难看, 快捷键也不太好用 (Ctrl + Alt + Break 来退出). 最后, 在跨域使用 RDP 时, 用 ZeroTier 建立虚拟局域网似乎已经是最方便的方法. 笔者还尝试了用 Cloudflare Tunnel 作为 RDP 的中转, 但因为中国大陆没有 Cloudflare 的服务器, 导致延迟高到完全不可用, 只能作罢. --><h2 id="总结">总结</h2><p>总的来说, 很难有一个完美的 all-in-one 的远程桌面方案. 笔者建议按照以下的优先级来实现 Windows 的远程桌面:</p><ul><li>Parsec, 开箱即用且效果极好</li><li>Moonlight 或 RDP, 取决于你的需求是游戏还是办公<ul><li>都需要 ZeroTier 来实现 P2P, 或者用其它的内网穿透方案</li><li>RDP 的客户端建议使用 mstsc 或 1Remote</li></ul></li><li>ToDesk, 笔者选取的备用方案, 并没有什么特别的理由</li></ul>]]></content>
     
     
     <categories>
@@ -204,9 +204,9 @@
     
     <tags>
       
-      <tag>Computer Aided Graphics Design</tag>
-      
       <tag>Bézier Curve</tag>
+      
+      <tag>Computer Aided Graphics Design</tag>
       
       <tag>B Spline</tag>
       
@@ -256,15 +256,15 @@
     
     <tags>
       
-      <tag>Computer Aided Graphics Design</tag>
+      <tag>Bernstein Polynomial</tag>
       
       <tag>Bézier Curve</tag>
+      
+      <tag>Computer Aided Graphics Design</tag>
       
       <tag>Bézier Spline</tag>
       
       <tag>B Spline</tag>
-      
-      <tag>Bernstein Polynomial</tag>
       
     </tags>
     
@@ -291,11 +291,11 @@
     
     <tags>
       
-      <tag>Computer Aided Graphics Design</tag>
+      <tag>Bernstein Polynomial</tag>
       
       <tag>Bézier Curve</tag>
       
-      <tag>Bernstein Polynomial</tag>
+      <tag>Computer Aided Graphics Design</tag>
       
     </tags>
     
@@ -322,13 +322,13 @@
     
     <tags>
       
-      <tag>Bézier Curve</tag>
-      
-      <tag>Bernstein Polynomial</tag>
-      
       <tag>Interpolation</tag>
       
       <tag>Fitting</tag>
+      
+      <tag>Bernstein Polynomial</tag>
+      
+      <tag>Bézier Curve</tag>
       
     </tags>
     
