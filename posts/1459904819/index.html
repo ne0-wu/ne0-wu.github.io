@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2024-11-17-01-01-44.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2024-11-17-01-01-55.png">
 <meta property="article:published_time" content="2024-11-16T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-11-16T17:05:14.203Z">
+<meta property="article:modified_time" content="2024-11-16T17:08:31.754Z">
 <meta property="article:author" content="Ne0 Wu">
 <meta property="article:tag" content="NAS">
 <meta name="twitter:card" content="summary_large_image">
@@ -291,9 +291,9 @@
 <ul>
 <li>Windows 10 Pro 22H2；</li>
 <li>WSL2 作为后端的 Docker Desktop, 所有 NAS 软件都跑在 Docker 中；</li>
-<li>良好且可靠的网络环境。<br>
-除了网络以外的两个要求，应该都是非常容易达到的。如果您的网络条件不佳（这通常会反映在 Docker 容器的日志中），网上也有很多文章能帮您解决。</li>
+<li>良好且可靠的网络环境。</li>
 </ul>
+<p>除了网络以外的两个要求，应该都是非常容易达到的。如果您的网络条件不佳（这通常会反映在 Docker 容器的日志中），网上也有很多文章能帮您解决。</p>
 <h1>管线</h1>
 <p>介绍一下笔者搭建的这套系统的完整管线。简要地说，我们需要做的事有以下几件：</p>
 <ul>
@@ -303,15 +303,15 @@
 </ul>
 <p>我们可以使用 qBittorrent 下载资源，使用 Jellyfin 刮削元数据、提供 UI 和播放。但这样做会遇到这样几个问题：</p>
 <ul>
-<li>BT 或 PT 站都是 “我为人人，人人为我” 的形式，也就是说下载完成后，仍然要保持文件的结构和命名不变，以为他人做种</li>
-<li>Jellyfin 内置的刮削依赖于文件的结构和命名，如果种子内的结构和命名不好，会导致元数据刮削失败</li>
+<li>BT 或 PT 站都是 “我为人人，人人为我” 的形式，也就是说下载完成后，仍然要保持文件的结构和命名不变，以为他人做种；</li>
+<li>Jellyfin 内置的刮削依赖于文件的结构和命名，如果种子内的结构和命名不好，会导致元数据刮削失败；</li>
 <li>解决以上两点之间的矛盾的通常办法是创建硬链接，但这又引出了以下的两个问题：
 <ul>
-<li>Windows 和 Docker （或者说 WSL2）的文件系统不一样，因此在 Docker 内创建硬链接会失败</li>
-<li>在 Windows 上可用的自动的硬链接 + 重命名工具 tinyMediaManager 是订阅制的付费软件</li>
+<li>Windows 和 Docker （或者说 WSL2）的文件系统不一样，因此在 Docker 内创建硬链接会失败；</li>
+<li>在 Windows 上可用的自动的硬链接 + 重命名工具 tinyMediaManager 是订阅制的付费软件；</li>
 </ul>
 </li>
-<li>最后是 Jellyfin 内置的刮削并不是特别好用，尤其是出错时会比较难以纠正（尤其在是动画或电视剧的情形下）</li>
+<li>最后是 Jellyfin 内置的刮削并不是特别好用，尤其是出错时会比较难以纠正（尤其在是动画或电视剧的情形下）。</li>
 </ul>
 <p>查了一些资料之后，笔者发现开源的 NAStool 和其后继者 MoviePilot 也能做到自动的硬链接 + 重命名，同时还有一些其它的方便功能。在尝试之后，发现用软链接也可以一定程度上替代硬链接。</p>
 <p>于是我们就得到了完整的管线：</p>
