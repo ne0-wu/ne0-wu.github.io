@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2024-11-17-01-01-44.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2024-11-17-01-01-55.png">
 <meta property="article:published_time" content="2024-11-16T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-11-17T08:57:48.884Z">
+<meta property="article:modified_time" content="2024-11-17T09:14:29.036Z">
 <meta property="article:author" content="Ne0 Wu">
 <meta property="article:tag" content="NAS">
 <meta name="twitter:card" content="summary_large_image">
@@ -291,9 +291,10 @@
 <ul>
 <li>Windows 10 Pro 22H2；</li>
 <li>WSL2 作为后端的 Docker Desktop, 所有 NAS 软件都跑在 Docker 中；</li>
+<li>一块 Nvidia 显卡用于视频转码（非必须）；</li>
 <li>良好且可靠的网络环境。</li>
 </ul>
-<p>除了网络以外的两个要求，应该都是非常容易达到的。如果您的网络条件不佳（这通常会反映在 Docker 容器的日志中），网上也有很多文章能帮您解决。</p>
+<p>除了网络以外的要求，应该都是非常容易达到的。如果您的网络条件不佳（这通常会反映在 Docker 容器的日志中），网上也有很多文章能帮您解决。</p>
 <h1>管线</h1>
 <p>介绍一下笔者搭建的这套系统的完整管线。简要地说，我们需要做的事有以下几件：</p>
 <ul>
@@ -324,7 +325,7 @@
 <h1>问题</h1>
 <p>笔者在配置过程中遇到的一些问题，以及解决方案。</p>
 <h2 id="容器间通信">容器间通信</h2>
-<p>qBittorrent 和 Jellyfin 都会提供一个端口用于与它们通信，如果是在宿主机上，只要使用 <a target="_blank" rel="noopener" href="http://localhost">http://localhost</a>:端口 就可以了。但容器内的网络并不相同，我们需要使用 <a target="_blank" rel="noopener" href="http://host.docker.internal">http://host.docker.internal</a>:端口.</p>
+<p>qBittorrent 和 Jellyfin 都会提供一个端口用于与它们通信，如果是在宿主机上，只要使用 <code>http://localhost:端口</code> 就可以了。但容器内的网络并不相同，我们需要使用 <code>http://host.docker.internal:端口</code>.</p>
 <p><img src="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2024-11-17-01-01-44.png" alt=""></p>
 <p><img src="https://cdn.jsdelivr.net/gh/ne0-wu/blogImg@main/2024-11-17-01-01-55.png" alt=""></p>
 <h2 id="软链接">软链接</h2>
