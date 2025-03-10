@@ -1,3 +1,4 @@
+https://ne0.io/posts/2712031934/
 https://ne0.io/posts/1459904819/
 https://ne0.io/posts/207604175/
 https://ne0.io/posts/3027832042/
@@ -20,12 +21,12 @@ https://ne0.io/tags/Fitting/
 https://ne0.io/tags/Bernstein-Polynomial/
 https://ne0.io/tags/Bezier-Curve/
 https://ne0.io/tags/Computer-Aided-Graphics-Design/
-https://ne0.io/tags/Polar-Form-and-Blossom/
-https://ne0.io/tags/B-Spline/
 https://ne0.io/tags/Bezier-Spline/
+https://ne0.io/tags/B-Spline/
 https://ne0.io/tags/Rational-Curve/
-https://ne0.io/tags/NAS/
+https://ne0.io/tags/Polar-Form-and-Blossom/
 https://ne0.io/tags/Math-Modeling/
+https://ne0.io/tags/NAS/
 https://ne0.io/tags/Packing/
 https://ne0.io/tags/Fast-Fourier-Transform/
 https://ne0.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/
